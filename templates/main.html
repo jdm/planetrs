@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Basic 82</title>
+<meta charset="iso-8859-1">
+<link rel="stylesheet" href="styles/layout.css" type="text/css">
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <h1>Planet Rust</h1>
+      <h2>The Rust programming language feeds</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="http://www.rust-lang.org">Rust Language</a></li>
+        <li><a href="http://doc.rust-lang.org/book/">Rust Book</a></li>
+        <li><a href="#">Planetrs on Github</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <section id="slider"><img src="images/rust-logo.png" alt=""></section>
+    <!-- content body -->
+    <aside id="left_column">
+      <h2 class="title">Feeds</h2>
+      <nav>
+        <ul>
+          <!-- {% for feed in data.feeds %} -->
+          <li><a href="{{ feed.homepage }}">{{ feed.name }}</a></li>
+          <!-- {% endfor %} -->
+        </ul>
+      </nav>
+      <!-- /nav -->
+
+      <!-- <h2 class="title">Informations</h2>
+      <section class="last">
+        <address>
+        Full Name<br>
+        Address Line 1<br>
+        Address Line 2<br>
+        Town/City<br>
+        Postcode/Zip<br>
+        <br>
+        Tel: xxxx xxxx xxxxxx<br>
+        Email: <a href="#">contact@domain.com</a>
+        </address>
+      </section> -->
+
+      <!-- /section -->
+    </aside>
+    <!-- main content -->
+    <div id="content">
+      <!-- {% for entry in data.entries %} -->
+      <article>
+        <h2>{{ entry.title }}</h2>
+        <h3>{{ entry.info.name }} - {{ entry.date }}</h3>
+        <p>{{ entry.resume }}</p
+        <footer class="more"><a href="{{ entry.link }}">Read More &raquo;</a></footer>
+      </article>
+      <!-- {% endfor %} -->
+    </div>
+    <!-- / content body -->
+  </div>
+</div>
+<!-- footer -->
+<div class="wrapper row3">
+  <footer id="footer" class="clear">
+    <p class="fl_left"><a href="#">www.planet-rust.com</a></p>
+    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </footer>
+</div>
+</body>
+</html>

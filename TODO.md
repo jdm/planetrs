@@ -1,0 +1,9 @@
+- Use a config file
+- Use clap as arguments parser: create/update/clean/from-template-only + configfile
+- Error handling
+- Logging
+- code cleanup
+- Multiple pages
+- Filter by feed
+- Static search engine
+- code/dirs cleanup
