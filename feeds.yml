@@ -2,23 +2,23 @@
     name: "The Rust Programming Language Blog"
     feedurl: "https://blog.rust-lang.org/feed.xml"
     homepage: "https://blog.rust-lang.org"
-- RustWeek:
-    name: "This week in Rust"
-    feedurl: "https://this-week-in-rust.org/rss.xml"
-    homepage: "https://this-week-in-rust.org"
-- SteveKlabnik:
-    name: "Steve Klabnik"
-    feedurl: "http://feeds.feedburner.com/steveklabnik/words"
-    homepage: "http://words.steveklabnik.com"
-- HuonWilson:
-    name: "Huon Wilson"
-    feedurl: "http://huonw.github.io/blog/rss.xml"
-    homepage: "http://huonw.github.io"
-- NikoMatsakis:
-    name: "Niko Matsakis"
-    feedurl: "http://smallcultfollowing.com/babysteps/atom.xml"
-    homepage: "http://smallcultfollowing.com/babysteps/"
-- PatrickWalton:
-    name: "Patrick Walton"
-    feedurl: "http://pcwalton.github.io/atom.xml"
-    homepage: "http://pcwalton.github.io"
+# - RustWeek:
+#     name: "This week in Rust"
+#     feedurl: "https://this-week-in-rust.org/rss.xml"
+#     homepage: "https://this-week-in-rust.org"
+# - SteveKlabnik:
+#     name: "Steve Klabnik"
+#     feedurl: "http://feeds.feedburner.com/steveklabnik/words"
+#     homepage: "http://words.steveklabnik.com"
+# - HuonWilson:
+#     name: "Huon Wilson"
+#     feedurl: "http://huonw.github.io/blog/rss.xml"
+#     homepage: "http://huonw.github.io"
+# - NikoMatsakis:
+#     name: "Niko Matsakis"
+#     feedurl: "http://smallcultfollowing.com/babysteps/atom.xml"
+#     homepage: "http://smallcultfollowing.com/babysteps/"
+# - PatrickWalton:
+#     name: "Patrick Walton"
+#     feedurl: "http://pcwalton.github.io/atom.xml"
+#     homepage: "http://pcwalton.github.io"

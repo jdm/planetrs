@@ -9,6 +9,7 @@ extern crate serde_yaml;
 extern crate serde_json;
 #[macro_use] extern crate tera;
 extern crate uuid;
+extern crate zip;
 
 mod entry;
 mod reader;

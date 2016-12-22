@@ -65,6 +65,7 @@ fn rss_to_entries(f: rss::Channel, info: &FeedInfo, v: &Arc<Mutex<Vec<Entry>>>) 
         let temp_resume = item.clone().description.expect("rss content failed");
         entry.resume = select_first_paragraph(temp_resume);
         entry.date = chrono::DateTime::parse_from_rfc2822(item.clone().pub_date.expect("rss date failed").as_ref()).expect("parse date failed").with_timezone(&chrono::UTC);
+        entry.generate_human_date();
         entry.generate_uid();
         v.lock().expect("v lock failed").push(entry);
     }
@@ -84,6 +85,7 @@ fn atom_to_entries(f: atom_syndication::Feed, info: &FeedInfo, v: &Arc<Mutex<Vec
         }
         let temp = item.clone().updated;
         entry.date = chrono::DateTime::parse_from_rfc3339(temp.as_ref()).expect("rss date failed").with_timezone(&chrono::UTC);
+        entry.generate_human_date();
         entry.generate_uid();
         v.lock().expect("v lock failed").push(entry);
     }
