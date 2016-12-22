@@ -12,40 +12,37 @@ use entry::FeedInfo;
 use entry::Entry;
 
 pub fn get_entries(feeds: &Vec<FeedInfo>) -> Vec<Entry> {
-    let inner_fi = Arc::new(Mutex::new(feeds.clone()));
+    let inner_fi = feeds.clone();
     let mut th_entries = Arc::new(Mutex::new(Vec::<Entry>::new()));
 
     let mut handles = Vec::new();
-    for _ in 0..10 {
-        let inner_fi = inner_fi.clone();
+    for fi in inner_fi {
         let th_entries = th_entries.clone();
         handles.push(
             thread::spawn(move || {
-                while let Some(fi) = inner_fi.lock().expect("Cant lock inner_fi").pop() {
-                    let mut dst = Vec::new();
-                    let mut handle = Easy::new();
-                    handle.timeout(Duration::new(10, 0)).expect("Cant set timeout");
-                    handle.url(&fi.feedurl).expect("Cant set url");
-                    handle.get(true).expect("Cant set Get");
-                    {
-                        let mut transfer = handle.transfer();
-                        transfer.write_function(|data| {
-                            dst.extend_from_slice(data);
-                            Ok(data.len())
-                        }).expect("Cant set write_fn");
-                        match transfer.perform() {
-                            Err(e) => println!("Perform() failed ({}): {}", fi.id, e),
-                            Ok(_) => println!("Successful download of {}", fi.id),
-                        }
+                let mut dst = Vec::new();
+                let mut handle = Easy::new();
+                handle.timeout(Duration::new(10, 0)).expect("Cant set timeout");
+                handle.url(&fi.feedurl).expect("Cant set url");
+                handle.get(true).expect("Cant set Get");
+                {
+                    let mut transfer = handle.transfer();
+                    transfer.write_function(|data| {
+                        dst.extend_from_slice(data);
+                        Ok(data.len())
+                    }).expect("Cant set write_fn");
+                    match transfer.perform() {
+                        Err(e) => println!("Perform() failed ({}): {}", fi.id, e),
+                        Ok(_) => println!("Successful download of {}", fi.id),
                     }
+                }
 
-                    let buf = String::from_utf8(dst).expect("Cant convert dst to buf");
-                    if let Ok(f) = buf.parse::<rss::Channel>() {
-                        rss_to_entries(f, &fi, &th_entries)
-                    }
-                    if let Ok(f) = buf.parse::<atom_syndication::Feed>() {
-                        atom_to_entries(f, &fi, &th_entries)
-                    }
+                let buf = String::from_utf8(dst).expect("Cant convert dst to buf");
+                if let Ok(f) = buf.parse::<rss::Channel>() {
+                    rss_to_entries(f, &fi, &th_entries)
+                }
+                if let Ok(f) = buf.parse::<atom_syndication::Feed>() {
+                    atom_to_entries(f, &fi, &th_entries)
                 }
             })
         )
