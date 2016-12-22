@@ -1,1 +1,1 @@
-Planet generator written in rust language
+Planet generator written in rust language (MIT License)

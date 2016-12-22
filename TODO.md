@@ -3,6 +3,7 @@
 - Error handling
 - Logging
 - Code cleanup
+- Categories
 - Multiple pages
 - Filter by feed
 - Static search engine
