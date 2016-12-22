@@ -33,7 +33,10 @@ pub fn get_entries(feeds: &Vec<FeedInfo>) -> Vec<Entry> {
                             dst.extend_from_slice(data);
                             Ok(data.len())
                         }).expect("Cant set write_fn");
-                        transfer.perform().expect("Get perform failed");
+                        match transfer.perform() {
+                            Err(e) => println!("Perform() failed ({}): {}", fi.id, e),
+                            Ok(_) => println!("Successful download of {}", fi.id),
+                        }
                     }
 
                     let buf = String::from_utf8(dst).expect("Cant convert dst to buf");
@@ -49,7 +52,7 @@ pub fn get_entries(feeds: &Vec<FeedInfo>) -> Vec<Entry> {
     }
 
     for h in handles {
-        h.join().expect("join handle failed");
+        let _ = h.join();
     }
 
     let v = Arc::get_mut(&mut th_entries).expect("getmut arc failed").get_mut().expect("getmut mutex failed").clone();

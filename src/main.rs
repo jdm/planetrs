@@ -21,7 +21,7 @@ fn main() {
     let feeds = reader::read_feeds("feeds.yml");
     let mut entries = catcher::get_entries(&feeds);
 
-    storer::merge_entries(&mut entries, "back.txt");
+    storer::merge_entries(&mut entries, "storage.zip");
 
     let mut data = renderer::Data::new();
     data.feeds = feeds;
